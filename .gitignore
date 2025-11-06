@@ -1,0 +1,47 @@
+# --- Python cache and bytecode ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+
+# --- Virtual environments ---
+.venv/
+venv/
+venv*/
+env*/
+ven37/
+
+# --- Datasets and large files ---
+*.csv
+*.xlsx
+*.xls
+
+# --- Logs and temporary files ---
+*.log
+*.tmp
+*.bak
+
+# --- IDE and OS files ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Compiled models or checkpoints ---
+*.h5
+*.pkl
+*.joblib
+*.sav
+
+# --- Flask/Django instance or build folders (if any) ---
+instance/
+build/
+dist/
+*.db
+*.sqlite3
+
+# --- Templates or static compiled cache ---
+*.pyc

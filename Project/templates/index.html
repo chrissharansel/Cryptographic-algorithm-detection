@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographic Algorithm Identifier</title>
+    <style>
+        /* Global Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #444;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select,
+        textarea,
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        select:focus,
+        textarea:focus,
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 255, 200, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #2200ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #7a00b3;
+            box-shadow: 0 5px 15px rgba(174, 0, 255, 0.4);
+        }
+
+        .advanced-settings {
+            margin-top: 40px;
+            padding: 25px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e1e6ea;
+        }
+
+        .advanced-settings h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .result {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 1.3rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            button {
+                padding: 12px;
+            }
+
+            .advanced-settings h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cryptographic Algorithm Identifier</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="algorithm">Select Algorithm Type:</label>
+                <select name="algorithm" id="algorithm">
+                    <option value="block">Block Ciphers</option>
+                    <option value="stream">Stream Ciphers</option>
+                    <option value="hash">Hash Functions</option>
+                    <option value="asymmetric">Asymmetric Key Algorithms</option>
+                    <option value="transposition">Transposition Ciphers</option>
+                    <option value="substitution">Substitution Ciphers</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ciphertext">Enter Cipher Text:</label>
+                <textarea name="ciphertext" id="ciphertext" placeholder="Enter Cipher Text" rows="4" required></textarea>
+            </div>
+
+            <div class="advanced-settings">
+                <h3>Advanced Settings</h3>
+                <div class="form-group">
+                    <label for="key-size">Select Key Size:</label>
+                    <select name="key_size" id="key_size">
+                        <option value="128">128-bit</option>
+                        <option value="192">192-bit</option>
+                        <option value="256">256-bit</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mode">Encryption Mode:</label>
+                    <select name="mode" id="mode">
+                        <option value="ecb">ECB</option>
+                        <option value="cbc">CBC</option>
+                        <option value="cfb">CFB</option>
+                        <option value="ofb">OFB</option>
+                        <option value="gcm">GCM</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">Predict Algorithm</button>
+        </form>
+
+        <div class="result">
+            {% if result %}
+            <p>Predicted Algorithm: {{ result }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

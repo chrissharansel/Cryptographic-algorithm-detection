@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographic Algorithm Identifier</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Cryptographic Algorithm Identifier</h2>
+        <form id="cipher-form">
+            <div class="form-group mb-3">
+                <label for="algorithm-type">Select Algorithm Type:</label>
+                <select id="algorithm-type" class="form-control">
+                    <option value="block_ciphers">Block Ciphers</option>
+                    <option value="stream_ciphers">Stream Ciphers</option>
+                    <option value="hash_functions">Hash Functions</option>
+                    <option value="substitution_ciphers">Substitution Ciphers</option>
+                    <option value="transposition_ciphers">Transposition Ciphers</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="cipher-text">Enter Cipher Text:</label>
+                <textarea id="cipher-text" class="form-control" rows="3" placeholder="Enter your cipher text here"></textarea>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Predict Algorithm</button>
+            </div>
+        </form>
+        <div class="mt-4">
+            <h5>Prediction Result:</h5>
+            <div id="result" class="alert alert-info" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('cipher-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const algorithmType = document.getElementById('algorithm-type').value;
+            const cipherText = document.getElementById('cipher-text').value;
+            
+            if (!cipherText) {
+                alert('Please enter the cipher text.');
+                return;
+            }
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ algorithmType, cipherText })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('result').innerHTML = `Predicted Algorithm: ${data.prediction}`;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

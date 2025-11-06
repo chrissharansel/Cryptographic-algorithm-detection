@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher Strength Report</title>
+    <style>
+        /* Global Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1c3d5a;
+            margin-bottom: 30px;
+        }
+
+        .strength {
+            margin-top: 15px;
+            font-size: 1.3em;
+            color: #28a745;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #5a5a5a;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 15px;
+            border-left: 4px solid #007bff;
+            padding-left: 10px;
+        }
+
+        .vulnerabilities,
+        .suggestions,
+        .extra-algorithms {
+            margin-top: 30px;
+        }
+
+        .vulnerabilities p,
+        .suggestions p,
+        .extra-algorithms p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .suggestions p strong {
+            color: #007bff;
+        }
+
+        .extra-algorithms p strong {
+            color: #ff4500;
+        }
+
+        .divider {
+            margin: 40px 0;
+            border-bottom: 1px solid #dfe2e6;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p, h2 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cipher Strength Report</h1>
+        <p class="strength">Security Strength: <strong>70%</strong></p>
+        <p>Algorithm: <strong>{{ algorithm }}</strong></p>
+        <p>Key Size: <strong>{{ key_size }} bits</strong></p>
+        <p>Encryption Mode: <strong>{{ mode }}</strong></p>
+
+        <div class="divider"></div>
+
+        <div class="vulnerabilities">
+            <h2>Potential Vulnerabilities</h2>
+            <p>- <strong>ECB mode</strong> has known weaknesses because it doesn't hide data patterns well.</p>
+            <p>- If a weak key is chosen, even <strong>AES-256</strong> can be vulnerable to brute-force attacks.</p>
+        </div>
+
+        <div class="suggestions">
+            <h2>Suggestions for Improvement</h2>
+            <p>- Switch from <strong>ECB</strong> to <strong>CBC</strong> or <strong>GCM</strong> mode for enhanced security and to hide data patterns.</p>
+            <p>- Use a longer key size, like <strong>256-bit</strong>, to increase the difficulty of brute-force attacks.</p>
+            <p>- Implement <strong>key rotation</strong> to regularly change encryption keys and reduce the impact of key compromise.</p>
+        </div>
+
+        <div class="extra-algorithms">
+            <h2>Extra Layer of Security</h2>
+            <p>- Consider adding <strong>RSA</strong> or <strong>ECC</strong> on top of AES for hybrid encryption, ensuring both symmetric and asymmetric cryptography are used.</p>
+            <p>- For sensitive applications, combining AES with <strong>ChaCha20</strong> can provide both speed and security.</p>
+            <p>- Apply <strong>digital signatures</strong> to authenticate data integrity and ensure that no tampering has occurred.</p>
+        </div>
+
+        
+    </div>
+</body>
+
+</html>
